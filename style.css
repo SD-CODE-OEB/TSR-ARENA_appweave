@@ -1,0 +1,580 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+  width: 100%;
+  background: #000;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+.menu {
+  margin: auto;
+  display: flex;
+  height: auto;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: transform 1s ease;
+}
+/* .move.menu {
+  transform: translateX(-100%);
+} */
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  text-align: center;
+  width: 100%;
+  padding: 0 25px;
+  color: magenta;
+  background: #000;
+  transition: width 1s ease;
+  position: relative;
+}
+
+.head p {
+  position: relative;
+  width: 115px;
+  text-align: end;
+  cursor: pointer;
+}
+.head p .logo {
+  position: absolute;
+  top: -4px;
+  left: 10px;
+}
+.head p .logo:hover {
+  color: white;
+}
+.head .cart-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.head .cart-links ul li {
+  list-style: none;
+}
+.head .cart-links ul li button {
+  text-decoration: none;
+  color: white;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  transition: 0.4s ease;
+  cursor: pointer;
+}
+.head .cart-links ul li button:hover {
+  text-decoration: underline;
+  color: magenta;
+}
+#active {
+  background-color: yellow;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  transition: 0.4s ease;
+  cursor: pointer;
+  color: black;
+}
+.cart {
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.4s ease;
+  padding: 5px 10px;
+}
+.cart:hover {
+  background-color: magenta;
+  color: white;
+}
+.cart-count {
+  position: absolute;
+  top: 3px;
+  right: 22px;
+  background-color: yellow;
+  color: #000;
+  padding: 0 5px;
+  border: 2px solid black;
+  border-radius: 50%;
+}
+.search-box {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  padding: 10px 0;
+  padding-right: 60px;
+}
+.search-box #search {
+  width: 200px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  outline: none;
+}
+.search-box button .search {
+  background: #000;
+  color: magenta;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  transition: 0.4s ease;
+}
+.main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  position: relative;
+  /* overflow: hidden; */
+}
+
+.main .container {
+  display: flex;
+  gap: 10px 40px;
+  justify-content: space-evenly;
+  align-content: center;
+  flex-wrap: wrap;
+  padding: 8px;
+  width: 60%;
+  height: 100%;
+  margin: 10px;
+  color: white;
+  position: relative;
+  left: 300px;
+  transition: width 1s ease;
+}
+.container h2 {
+  text-align: center;
+  color: white;
+  font-size: 1.9rem;
+  margin: 10px 0;
+}
+.container .select-gender {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+}
+
+.container .select-gender .btns {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  gap: 10px;
+}
+
+.container .select-gender button {
+  width: auto;
+  padding: 0px;
+  border: none;
+  border-radius: 15px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  transition: 0.4s ease;
+}
+.container button img {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+}
+.container button img:hover {
+  height: 200px;
+}
+.container button:hover {
+  background-color: black;
+  color: white;
+}
+.container button .info:hover {
+  background-color: black;
+  color: magenta;
+}
+.select-colors,
+.select-type {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+}
+.select-colors .btns,
+.select-type .btns {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  gap: 10px;
+}
+.select-colors button,
+.select-type button {
+  width: auto;
+  border: none;
+  border-radius: 15px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  transition: 0.4s ease;
+}
+.select-type button {
+  width: auto;
+  padding: 10px;
+  margin: 5px 10px;
+}
+.select-colors button:hover,
+.select-type button:hover {
+  background-color: black;
+  color: magenta;
+  transform: scale(1.1);
+}
+.select-colors .card,
+.select-type .card {
+  height: 100px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.select-type .card {
+  height: 150px;
+  width: 150px;
+}
+.select-colors .card .info:hover,
+.select-type .card .info:hover {
+  background: transparent;
+  color: magenta;
+}
+.select-colors .get-blue,
+.card.get-blue .info {
+  background-color: blue;
+}
+.select-colors .get-red,
+.card.get-red .info {
+  background-color: red;
+}
+.select-colors .get-white,
+.card.get-white .info {
+  background-color: white;
+  color: black;
+}
+.select-colors .get-yellow,
+.card.get-yellow .info {
+  background-color: yellow;
+  color: black;
+}
+.select-colors .get-cream,
+.card.get-cream .info {
+  background-color: rgb(255, 255, 204);
+  color: black;
+}
+.select-colors .get-green,
+.card.get-green .info {
+  background-color: green;
+}
+.select-colors .get-grey,
+.card.get-grey .info {
+  background-color: grey;
+  color: black;
+}
+.card {
+  border: 1px solid gainsboro;
+  border-radius: 8px;
+  height: 250px;
+  width: 200px;
+  margin: 5px 0;
+  background-color: black;
+  overflow: hidden;
+}
+.card img {
+  width: 100%;
+  height: 200px;
+  transition: all 1s ease;
+  object-fit: cover;
+}
+.card img:hover {
+  height: 100%;
+}
+.card .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  color: white;
+  background-color: black;
+  overflow: hidden;
+}
+.card .info .cost {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 12px;
+  padding: 5px;
+}
+.card .info .cost button {
+  margin-bottom: 5px;
+  border-radius: 5px;
+  border: 1px solid magenta;
+  padding: 1px;
+  width: 75px;
+  transition: all 0.4s ease;
+  background-color: magenta;
+  color: white;
+  cursor: pointer;
+}
+.card .info .cost button:hover {
+  background-color: white;
+  color: magenta;
+  transform: scale(1.1);
+}
+
+.c-menu {
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  position: fixed;
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 1s ease;
+}
+
+.active.c-menu {
+  bottom: 0;
+  box-shadow: 0 0 0px 5px black;
+}
+
+.c-menu h1 {
+  text-align: center;
+  color: rgb(255, 255, 255);
+  font-size: 2.2rem;
+  background-color: rgba(255, 255, 255, 0.449);
+}
+
+.c-menu .cart-items {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 90px);
+  overflow-y: auto;
+}
+
+.c-menu .btn-box {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.c-menu .btn-box button {
+  width: 50%;
+  height: 50px;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  cursor: pointer;
+}
+
+#order {
+  background-color: green;
+  color: white;
+}
+#cancel {
+  background-color: red;
+  color: white;
+}
+#order:hover,
+#cancel:hover {
+  color: black;
+}
+
+.cart-create {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 75px;
+  background-color: gainsboro;
+  animation: slide 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+  box-shadow: 0 0px 0 2px black;
+  overflow: hidden;
+}
+
+.cart-create img {
+  height: 100%;
+}
+
+.cart-create .item-nm-cnt {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 125px;
+  padding: 5px 0;
+}
+
+.cart-create .item-nm-cnt > * {
+  width: 100%;
+  text-align: center;
+}
+
+.cart-create .add_remove {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90px;
+  height: 100%;
+  padding: 0 5px;
+}
+
+.cart-create .add_remove span {
+  cursor: pointer;
+  background: #000;
+  color: yellow;
+  padding: 1px;
+}
+
+.overlay {
+  display: none;
+}
+
+.active.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.83);
+  z-index: 100;
+}
+.overlay h1 {
+  color: white;
+  font-size: 4rem;
+  background-color: rgba(0, 255, 51, 0.766);
+  padding: 10px;
+  border-radius: 10px;
+}
+#close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+  font-size: 2rem;
+  background-color: rgba(0, 255, 51, 0.766);
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.overlay span {
+  color: white;
+  border: none;
+  font-size: 2rem;
+  background-color: rgba(0, 255, 51, 0.621);
+  border: 1px solid white;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.overlay span:hover {
+  background-color: rgba(255, 255, 255, 0.594);
+}
+@keyframes slide {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .main .container {
+    left: 100px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .main .container {
+    left: 80px;
+    gap: 10px;
+    justify-content: center;
+  }
+  .main .filters {
+    width: 200px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .main .filters {
+    width: 50px;
+  }
+  .filters h4 {
+    width: auto;
+    font-size: 0.9rem;
+  }
+  .filters .fil-box .filter {
+    width: 120px;
+    height: 120px;
+  }
+  .main .container {
+    left: 50px;
+  }
+  .card {
+    width: 180px;
+    height: 200px;
+  }
+  .card img {
+    height: 140px;
+  }
+  .container button img {
+    height: 150px;
+    width: 150px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .main .container {
+    left: 0px;
+  }
+}
