@@ -158,12 +158,6 @@ const closeBtn = document.getElementById("close");
 
 const orderComplete = document.querySelector(".overlay");
 
-searchBtn.addEventListener("click", () => {
-  searchBar.classList.add("active");
-  // bar.style.opacity=1;
-  searchBar.focus();
-});
-
 const round = [
   {
     name: "Round grey T-shirt",
@@ -321,33 +315,100 @@ const low = collection.filter((item) => item.price < 300);
 const mid = collection.filter((item) => item.price >= 300 && item.price < 500);
 const high = collection.filter((item) => item.price >= 500);
 // --------------------------------------------------------------------------
-// const green = collection.filter((item) => item.name.includes("green"));
-// const red = collection.filter((item) => item.name.includes("red"));
-// const blue = collection.filter((item) => item.name.includes("blue"));
-// const yellow = collection.filter((item) => item.name.includes("yellow"));
-// const grey = collection.filter((item) => item.name.includes("grey"));
-// const cream = collection.filter((item) => item.name.includes("cream"));
-// const black = collection.filter((item) => item.name.includes("black"));
-// const white = collection.filter((item) => item.name.includes("white"));
-// const blackpolo = collection.filter(
-//   (item) => item.name.includes("black") && item.name.includes("Polo")
-// );
-// const greypolo = collection.filter(
-//   (item) => item.name.includes("grey") && item.name.includes("Polo")
-// );
-// const bluepolo = collection.filter(
-//   (item) => item.name.includes("blue") && item.name.includes("Polo")
-// );
-// const greenpolo = collection.filter(
-//   (item) => item.name.includes("green") && item.name.includes("Polo")
-// );
-// const roundwhite = collection.filter(
-//   (item) => item.name.includes("white") && item.name.includes("Round")
-// );
-// const roundred = collection.filter(
-//   (item) => item.name.includes("red") && item.name.includes("Round")
-// );
+// Color Filter
+const green = collection.filter((item) => item.name.includes("green"));
+const red = collection.filter((item) => item.name.includes("red"));
+const blue = collection.filter((item) => item.name.includes("blue"));
+const yellow = collection.filter((item) => item.name.includes("yellow"));
+const grey = collection.filter((item) => item.name.includes("grey"));
+const cream = collection.filter((item) => item.name.includes("cream"));
+const black = collection.filter((item) => item.name.includes("black"));
+const white = collection.filter((item) => item.name.includes("white"));
+// --------------------------------------------------------------------------
+// Type & Color Filter
+const poloblack = collection.filter(
+  (item) => item.name.includes("black") && item.name.includes("Polo")
+);
+const pologrey = collection.filter(
+  (item) => item.name.includes("grey") && item.name.includes("Polo")
+);
+const poloblue = collection.filter(
+  (item) => item.name.includes("blue") && item.name.includes("Polo")
+);
+const pologreen = collection.filter(
+  (item) => item.name.includes("green") && item.name.includes("Polo")
+);
+const roundwhite = collection.filter(
+  (item) => item.name.includes("white") && item.name.includes("Round")
+);
+const roundred = collection.filter(
+  (item) => item.name.includes("red") && item.name.includes("Round")
+);
+const roundblue = collection.filter(
+  (item) => item.name.includes("blue") && item.name.includes("Round")
+);
+const roundyellow = collection.filter(
+  (item) => item.name.includes("yellow") && item.name.includes("Round")
+);
+const hoodiewhite = collection.filter(
+  (item) => item.name.includes("white") && item.name.includes("Hoodie")
+);
+const hoodieblue = collection.filter(
+  (item) => item.name.includes("blue") && item.name.includes("Hoodie")
+);
+const hoodieyellow = collection.filter(
+  (item) => item.name.includes("yellow") && item.name.includes("Hoodie")
+);
+const hoodiegreen = collection.filter(
+  (item) => item.name.includes("green") && item.name.includes("Hoodie")
+);
+const hoodiecream = collection.filter(
+  (item) => item.name.includes("cream") && item.name.includes("Hoodie")
+);
+const hoodieblack = collection.filter(
+  (item) => item.name.includes("black") && item.name.includes("Hoodie")
+);
+
 // ----------------------------------------------------------------------
+// Gender & Color Filter
+const redFemale = collection.filter(
+  (item) => item.name.includes("red") && item.name.includes("(F)")
+);
+const blueFemale = collection.filter(
+  (item) => item.name.includes("blue") && item.name.includes("(F)")
+);
+const yellowFemale = collection.filter(
+  (item) => item.name.includes("yellow") && item.name.includes("(F)")
+);
+const whiteFemale = collection.filter(
+  (item) => item.name.includes("white") && item.name.includes("(F)")
+);
+const bluemale = collection.filter(
+  (item) => item.name.includes("blue") && !item.name.includes("(F)")
+);
+// const redmale = collection.filter(
+//   (item) => item.name.includes("red") && !item.name.includes("(F)")
+// );
+const yellowmale = collection.filter(
+  (item) => item.name.includes("yellow") && !item.name.includes("(F)")
+);
+// const greenmale = collection.filter(
+//   (item) => item.name.includes("green") && !item.name.includes("(F)")
+// );
+const creammale = collection.filter(
+  (item) => item.name.includes("cream") && !item.name.includes("(F)")
+);
+const greymale = collection.filter(
+  (item) => item.name.includes("grey") && !item.name.includes("(F)")
+);
+const blackmale = collection.filter(
+  (item) => item.name.includes("black") && !item.name.includes("(F)")
+);
+const whitemale = collection.filter(
+  (item) => item.name.includes("white") && !item.name.includes("(F)")
+);
+// -----------------------------------------------------------------------
+// Female & Type & Color Filter
 const redRoundfemale = collection.filter(
   (item) =>
     item.name.includes("red") &&
@@ -384,6 +445,7 @@ const whiteHoodiefemale = collection.filter((item) => {
     item.name.includes("Hoodie");
 });
 // -----------------------------------------------------------------------
+// Male & Type & Color Filter
 const whiteRoundmale = collection.filter(
   (item) =>
     item.name.includes("white") &&
@@ -509,7 +571,6 @@ const menuItems = cardContainer.children;
 function putInCart() {
   for (const item of menuItems) {
     const getAddBtn = item.querySelector(".add");
-    console.log("getAddBtn", getAddBtn);
 
     if (getAddBtn) {
       getAddBtn.onclick = function () {
@@ -650,12 +711,12 @@ orderBtn.onclick = function () {
 closeBtn.onclick = function () {
   orderComplete.classList.remove("active");
   document.location.reload();
+  searchBar.value = "";
 };
 
 function removeDups(c) {
   newArr.length = 0;
   const cardItemNames = cardContainer.querySelectorAll(".info .c-name");
-  console.log("cardItemNames", cardItemNames);
 
   for (let i = 0; i < cardItemNames.length; i++) {
     if (!newArr.includes(cardItemNames[i].innerText)) {
@@ -873,3 +934,755 @@ maleCard.onclick = function () {
     });
   }
 };
+if (document.location.reload) {
+  searchBar.value = "";
+}
+searchBar.focus();
+searchBtn.addEventListener("click", () => {
+  let val = searchBar.value.toLowerCase().split(" ");
+  val.forEach((item) => {
+    if (
+      item === "tshirt" ||
+      item === "t-shirt" ||
+      item === "t shirt" ||
+      item === "t-shirts" ||
+      item === "t shirts" ||
+      item === "tshirts" ||
+      item === "shirt" ||
+      item === "shirts"
+    ) {
+      val.splice(val.indexOf(item), 1);
+    }
+  });
+  val = val.join("");
+  if (val === "male") {
+    val = "male";
+  } else if (val === "female") {
+    val = "female";
+  } else if (val === "roundmale" || val === "maleround") {
+    val = "roundmale";
+  } else if (val === "roundfemale" || val === "femaleround") {
+    val = "roundfemale";
+  } else if (val === "hoodiemale" || val === "malehoodie") {
+    val = "hoodiemale";
+  } else if (val === "hoodiefemale" || val === "femalehoodie") {
+    val = "hoodiefemale";
+  } else if (val === "polomale" || val === "malepolo") {
+    val = "polomale";
+  } else if (val === "polofemale" || val === "femalepolo") {
+    val = "polofemale";
+  } else if (val === "femaleblue" || val === "bluefemale") {
+    val = "femaleblue";
+  } else if (val === "femalered" || val === "redfemale") {
+    val = "femalered";
+  } else if (val === "femaleyellow" || val === "yellowfemale") {
+    val = "femaleyellow";
+  } else if (val === "femalewhite" || val === "whitefemale") {
+    val = "femalewhite";
+  } else if (val === "femalegreen" || val === "greenfemale") {
+    val = "femalegreen";
+  } else if (val === "femaleblack" || val === "blackfemale") {
+    val = "femaleblack";
+  } else if (val === "maleblue" || val === "bluemale") {
+    val = "maleblue";
+  } else if (val === "malered" || val === "redmale") {
+    val = "malered";
+  } else if (val === "maleyellow" || val === "yellowmale") {
+    val = "maleyellow";
+  } else if (val === "malewhite" || val === "whitemale") {
+    val = "malewhite";
+  } else if (val === "malegreen" || val === "greenmale") {
+    val = "malegreen";
+  } else if (val === "maleblack" || val === "blackmale") {
+    val = "maleblack";
+  } else if (val === "malegrey" || val === "greymale") {
+    val = "malegrey";
+  } else if (val === "femalegrey" || val === "greyfemale") {
+    val = "femalegrey";
+  } else if (val === "malecream" || val === "creammale") {
+    val = "malecream";
+  } else if (val === "femalecream" || val === "creamfemale") {
+    val = "femalecream";
+  } else if (
+    val === "round" ||
+    val === "roundneck" ||
+    val === "roundnecktshirt" ||
+    val === "roundnecktshirts"
+  ) {
+    val = "round";
+  } else if (val === "polo" || val === "polotshirt" || val === "polotshirts") {
+    val = "polo";
+  } else if (val === "hoodie" || val === "hoodies") {
+    val = "hoodie";
+  } else if (val === "roundred" || val === "redround") {
+    val = "roundred";
+  } else if (val === "roundyellow" || val === "yellowround") {
+    val = "roundyellow";
+  } else if (val === "roundwhite" || val === "whiteround") {
+    val = "roundwhite";
+  } else if (val === "hoodiered" || val === "redhoodie") {
+    val = "hoodiered";
+  } else if (val === "hoodieyellow" || val === "yellowhoodie") {
+    val = "hoodieyellow";
+  } else if (val === "hoodiewhite" || val === "whitehoodie") {
+    val = "hoodiewhite";
+  } else if (val === "poloblack" || val === "blackpolo") {
+    val = "poloblack";
+  } else if (val === "pologrey" || val === "greypolo") {
+    val = "pologrey";
+  } else if (val === "poloblue" || val === "bluepolo") {
+    val = "poloblue";
+  } else if (val === "pologreen" || val === "greenpolo") {
+    val = "pologreen";
+  } else if (val === "roundblack" || val === "blackround") {
+    val = "roundblack";
+  } else if (val === "roundgrey" || val === "greyround") {
+    val = "roundgrey";
+  } else if (val === "roundblue" || val === "blueround") {
+    val = "roundblue";
+  } else if (val === "roundgreen" || val === "greenround") {
+    val = "roundgreen";
+  } else if (val === "hoodieblue" || val === "bluehoodie") {
+    val = "hoodieblue";
+  } else if (val === "hoodiegreen" || val === "greenhoodie") {
+    val = "hoodiegreen";
+  } else if (
+    val === "hoodiecream" ||
+    val === "creamhoodie" ||
+    val === "hoodiecream"
+  ) {
+    val = "hoodiecream";
+  } else if (
+    val === "hoodiewhite" ||
+    val === "whitehoodie" ||
+    val === "hoodiewhite"
+  ) {
+    val = "hoodiewhite";
+  } else if (
+    val === "roundwhite" ||
+    val === "whiteround" ||
+    val === "roundwhitetshirt" ||
+    val === "roundwhitetshirts" ||
+    val === "whiteroundtshirt" ||
+    val === "whiteroundtshirts"
+  ) {
+    val = "roundwhite";
+  } else if (
+    val === "roundredfemale" ||
+    val === "redroundfemale" ||
+    val === "roundfemalered" ||
+    val === "femaleredround" ||
+    val === "redfemaleround" ||
+    val === "femaleredround"
+  ) {
+    val = "roundredfemale";
+  } else if (
+    val === "roundyellowfemale" ||
+    val === "yellowroundfemale" ||
+    val === "roundfemaleyellow" ||
+    val === "femaleyellowround" ||
+    val === "yellowfemaleround" ||
+    val === "femaleroundyellow"
+  ) {
+    val = "roundyellowfemale";
+  } else if (
+    val === "roundwhitefemale" ||
+    val === "whiteroundfemale" ||
+    val === "femalewhiteround" ||
+    val === "femalewhiteround" ||
+    val === "roundfemalewhite"
+  ) {
+    val = "roundwhitefemale";
+  } else if (
+    val === "hoodieredfemale" ||
+    val === "redhoodiefemale" ||
+    val === "femalehoodiered" ||
+    val === "femaleredhoodie" ||
+    val === "hoodiefemalered" ||
+    val === "redfemalehoodie"
+  ) {
+    val = "hoodieredfemale";
+  } else if (
+    val === "hoodieyellowfemale" ||
+    val === "yellowhoodiefemale" ||
+    val === "femalehoodieyellow" ||
+    val === "femaleyellowhoodie" ||
+    val === "hoodiefemaleyellow" ||
+    val === "yellowfemalehoodie"
+  ) {
+    val = "hoodieyellowfemale";
+  } else if (
+    val === "hoodiewhitefemale" ||
+    val === "whitehoodiefemale" ||
+    val === "femalehoodiewhite" ||
+    val === "femalewhitehoodie" ||
+    val === "hoodiefemalewhite" ||
+    val === "whitefemalehoodie"
+  ) {
+    val = "hoodiewhitefemale";
+  } else if (
+    val === "roundwhitemale" ||
+    val === "whiteroundmale" ||
+    val === "malewhiteround" ||
+    val === "malewhiteround" ||
+    val === "roundmalewhite"
+  ) {
+    val = "roundwhitemale";
+  } else if (
+    val === "roundyellowmale" ||
+    val === "yellowroundmale" ||
+    val === "maleyellowround" ||
+    val === "roundmaleyellow" ||
+    val === "maleroundyellow"
+  ) {
+    val = "roundyellowmale";
+  } else if (
+    val === "roundbluemale" ||
+    val === "blueroundmale" ||
+    val === "maleblueround" ||
+    val === "maleroundblue" ||
+    val === "roundmaleblue"
+  ) {
+    val = "roundbluemale";
+  } else if (
+    val === "roundgreenmale" ||
+    val === "greenroundmale" ||
+    val === "malegreenround" ||
+    val === "maleroundgreen" ||
+    val === "roundmalegreen"
+  ) {
+    val = "roundgreenmale";
+  } else if (
+    val === "hoodieyellowmale" ||
+    val === "yellowhoodiemale" ||
+    val === "malehoodieyellow" ||
+    val === "maleyellowhoodie" ||
+    val === "hoodiemaleyellow"
+  ) {
+    val = "hoodieyellowmale";
+  } else if (
+    val === "hoodiebluemale" ||
+    val === "bluehoodiemale" ||
+    val === "malehoodieblue" ||
+    val === "malebluehoodie" ||
+    val === "hoodiemaleblue"
+  ) {
+    val = "hoodiebluemale";
+  } else if (
+    val === "hoodiegreenmale" ||
+    val === "greenhoodiemale" ||
+    val === "malehoodiegreen" ||
+    val === "malegreenhoodie" ||
+    val === "hoodiemalegreen"
+  ) {
+    val = "hoodiegreenmale";
+  } else if (
+    val === "hoodiecreammale" ||
+    val === "creamhoodiemale" ||
+    val === "malehoodiecream" ||
+    val === "malecreamhoodie" ||
+    val === "hoodiemalecream"
+  ) {
+    val = "hoodiecreammale";
+  } else if (
+    val === "hoodiewhitemale" ||
+    val === "whitehoodiemale" ||
+    val === "malehoodiewhite" ||
+    val === "malewhitehoodie" ||
+    val === "hoodiemalewhite"
+  ) {
+    val = "hoodiewhitemale";
+  } else if (
+    val === "poloblackmale" ||
+    val === "blackpolomale" ||
+    val === "maleblackpolo" ||
+    val === "malepoloblack" ||
+    val === "polomaleblack"
+  ) {
+    val = "poloblackmale";
+  } else if (
+    val === "pologreymale" ||
+    val === "greypolomale" ||
+    val === "malegreypolo" ||
+    val === "malepologrey" ||
+    val === "polomalegrey"
+  ) {
+    val = "pologreymale";
+  } else if (
+    val === "polobluemale" ||
+    val === "bluepolomale" ||
+    val === "malebluepolo" ||
+    val === "malepoloblue"
+  ) {
+    val = "polobluemale";
+  } else if (
+    val === "pologreenmale" ||
+    val === "greenpolomale" ||
+    val === "malegreenpolo" ||
+    val === "polomalegreen" ||
+    val === "malepologreen"
+  ) {
+    val = "pologreenmale";
+  } else if (
+    val === "roundblackmale" ||
+    val === "blackroundmale" ||
+    val === "maleblackround" ||
+    val === "roundmaleblack" ||
+    val === "maleroundblack"
+  ) {
+    val = "roundblackmale";
+  } else if (
+    val === "roundgreymale" ||
+    val === "greyroundmale" ||
+    val === "malegreyround" ||
+    val === "maleroundgrey"
+  ) {
+    val = "roundgreymale";
+  } else if (
+    val === "roundbluemale" ||
+    val === "blueroundmale" ||
+    val === "maleblueround" ||
+    val === "maleroundblue" ||
+    val === "roundmaleblue"
+  ) {
+    val = "roundbluemale";
+  } else if (
+    val === "roundredmale" ||
+    val === "redroundmale" ||
+    val === "maleredround" ||
+    val === "roundmalered" ||
+    val === "maleroundred"
+  ) {
+    val = "roundredmale";
+  } else {
+    val = val;
+  }
+  console.log("val", val);
+
+  switch (val) {
+    case "red":
+      cardContainer.innerHTML = "";
+      createCard(red);
+      putInCart();
+      removeCartDups();
+      break;
+    case "yellow":
+      cardContainer.innerHTML = "";
+      createCard(yellow);
+      putInCart();
+      removeCartDups();
+      break;
+    case "blue":
+      cardContainer.innerHTML = "";
+      createCard(blue);
+      putInCart();
+      removeCartDups();
+      break;
+    case "green":
+      cardContainer.innerHTML = "";
+      createCard(green);
+      putInCart();
+      removeCartDups();
+      break;
+    case "white":
+      cardContainer.innerHTML = "";
+      createCard(white);
+      putInCart();
+      removeCartDups();
+      break;
+    case "black":
+      cardContainer.innerHTML = "";
+      createCard(black);
+      putInCart();
+      removeCartDups();
+      break;
+    case "grey":
+      cardContainer.innerHTML = "";
+      createCard(grey);
+      putInCart();
+      removeCartDups();
+      break;
+    case "cream":
+      cardContainer.innerHTML = "";
+      createCard(cream);
+      putInCart();
+      removeCartDups();
+      break;
+    case "male":
+      cardContainer.innerHTML = "";
+      createCard(male);
+      putInCart();
+      removeCartDups();
+      break;
+    case "female":
+      cardContainer.innerHTML = "";
+      createCard(female);
+      putInCart();
+      removeCartDups();
+      break;
+    case "femaleblue":
+      cardContainer.innerHTML = "";
+      createCard(blueFemale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "femalered":
+      cardContainer.innerHTML = "";
+      createCard(redFemale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "femaleyellow":
+      cardContainer.innerHTML = "";
+      createCard(yellowFemale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "femalewhite":
+      cardContainer.innerHTML = "";
+      createCard(whiteFemale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "femalegreen":
+      cardContainer.innerHTML = "<h1>Sorry, No Items Available</h1>";
+      break;
+    case "femaleblack":
+      cardContainer.innerHTML = "<h1>Sorry, No Items Available</h1>";
+      break;
+    case "maleblue":
+      cardContainer.innerHTML = "";
+      createCard(bluemale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "malered":
+      cardContainer.innerHTML = "<h1>Sorry, No Items Available</h1>";
+      break;
+    case "maleyellow":
+      cardContainer.innerHTML = "";
+      createCard(yellowmale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "malewhite":
+      cardContainer.innerHTML = "";
+      createCard(whitemale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "malegreen":
+      cardContainer.innerHTML = "";
+      createCard(greenmale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "maleblack":
+      cardContainer.innerHTML = "";
+      createCard(blackmale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "malegrey":
+      cardContainer.innerHTML = "";
+      createCard(greymale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "femalegrey":
+      cardContainer.innerHTML = "<h1>Sorry, No Items Available</h1>";
+      break;
+    case "malecream":
+      cardContainer.innerHTML = "";
+      createCard(creammale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "femalecream":
+      cardContainer.innerHTML = "<h1>Sorry, No Items Available</h1>";
+      break;
+    case "round":
+      cardContainer.innerHTML = "";
+      createCard(round);
+      putInCart();
+      removeCartDups();
+      break;
+    case "polo":
+      cardContainer.innerHTML = "";
+      createCard(polo);
+      putInCart();
+      removeCartDups();
+      break;
+    case "hoodie":
+      cardContainer.innerHTML = "";
+      createCard(hood);
+      putInCart();
+      removeCartDups();
+      break;
+    case "roundmale":
+      cardContainer.innerHTML = "";
+      createCard(roundMale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "roundfemale":
+      cardContainer.innerHTML = "";
+      createCard(roundFemale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "polomale":
+      cardContainer.innerHTML = "";
+      createCard(poloMale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "polofemale":
+      cardContainer.innerHTML = "";
+      cardContainer.innerHTML = `<h1>Sorry, No Items Available</h1>`;
+      break;
+    case "hoodiemale":
+      cardContainer.innerHTML = "";
+      createCard(hoodiesMale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "hoodiefemale":
+      cardContainer.innerHTML = "";
+      createCard(hoodiesFemale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "roundred":
+      cardContainer.innerHTML = "";
+      createCard(roundred);
+      putInCart();
+      removeCartDups();
+      break;
+    case "roundyellow":
+      cardContainer.innerHTML = "";
+      createCard(roundyellow);
+      putInCart();
+      removeCartDups();
+      break;
+    case "roundwhite":
+      cardContainer.innerHTML = "";
+      createCard(roundwhite);
+      putInCart();
+      removeCartDups();
+      break;
+    case "hoodiered":
+      cardContainer.innerHTML = "";
+      createCard(hoodiered);
+      putInCart();
+      removeCartDups();
+      break;
+    case "hoodieyellow":
+      cardContainer.innerHTML = "";
+      createCard(hoodieyellow);
+      putInCart();
+      removeCartDups();
+      break;
+    case "hoodiewhite":
+      cardContainer.innerHTML = "";
+      createCard(hoodiewhite);
+      putInCart();
+      removeCartDups();
+      break;
+    case "poloblack":
+      cardContainer.innerHTML = "";
+      createCard(poloblack);
+      putInCart();
+      removeCartDups();
+      break;
+    case "pologrey":
+      cardContainer.innerHTML = "";
+      createCard(pologrey);
+      putInCart();
+      removeCartDups();
+      break;
+    case "poloblue":
+      cardContainer.innerHTML = "";
+      createCard(poloblue);
+      putInCart();
+      removeCartDups();
+      break;
+    case "pologreen":
+      cardContainer.innerHTML = "";
+      createCard(pologreen);
+      putInCart();
+      removeCartDups();
+      break;
+    case "roundblack":
+      cardContainer.innerHTML = "";
+      createCard(roundblack);
+      putInCart();
+      removeCartDups();
+      break;
+    case "roundgrey":
+      cardContainer.innerHTML = "";
+      createCard(roundred);
+      putInCart();
+      removeCartDups();
+      break;
+    case "roundblue":
+      cardContainer.innerHTML = "";
+      createCard(roundblue);
+      putInCart();
+      removeCartDups();
+      break;
+    case "roundgreen":
+      cardContainer.innerHTML = "";
+      createCard(roundred);
+      putInCart();
+      removeCartDups();
+      break;
+    case "hoodieblue":
+      cardContainer.innerHTML = "";
+      createCard(hoodieblue);
+      putInCart();
+      removeCartDups();
+      break;
+    case "hoodiegreen":
+      cardContainer.innerHTML = "";
+      createCard(hoodiegreen);
+      putInCart();
+      removeCartDups();
+      break;
+    case "hoodiecream":
+      cardContainer.innerHTML = "";
+      createCard(hoodiecream);
+      putInCart();
+      removeCartDups();
+      break;
+    case "hoodiewhite":
+      cardContainer.innerHTML = "";
+      createCard(hoodiewhite);
+      putInCart();
+      removeCartDups();
+      break;
+    case "roundredfemale":
+      cardContainer.innerHTML = "";
+      createCard(redRoundfemale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "roundyellowfemale":
+      cardContainer.innerHTML = "";
+      createCard(yellowRoundfemale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "roundwhitefemale":
+      cardContainer.innerHTML = "";
+      createCard(whiteRoundfemale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "hoodieredfemale":
+      cardContainer.innerHTML = "";
+      createCard(redHoodiefemale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "hoodieyellowfemale":
+      cardContainer.innerHTML = "<h1>Sorry, No Items Available</h1>";
+      break;
+    case "hoodiewhitefemale":
+      cardContainer.innerHTML = "";
+      createCard(whiteHoodiefemale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "roundwhitemale":
+      cardContainer.innerHTML = "";
+      createCard(whiteRoundmale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "roundyellowmale":
+      cardContainer.innerHTML = "";
+      createCard(yellowRoundfemale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "roundbluemale":
+      cardContainer.innerHTML = "";
+      createCard(blueRoundmale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "roundgreenmale":
+      cardContainer.innerHTML = "<h1>Sorry, No Items Available</h1>";
+      break;
+    case "roundredmale":
+      cardContainer.innerHTML = "<h1>Sorry, No Items Available</h1>";
+      break;
+    case "hoodieyellowmale":
+      cardContainer.innerHTML = "";
+      createCard(yellowHoodiemale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "hoodiebluemale":
+      cardContainer.innerHTML = "";
+      createCard(blueHoodiemale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "hoodiegreenmale":
+      cardContainer.innerHTML = "";
+      createCard(greenHoodiemale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "hoodiecreammale":
+      cardContainer.innerHTML = "";
+      createCard(creamHoodiemale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "hoodiewhitemale":
+      cardContainer.innerHTML = "<h1>Sorry, No Items Available</h1>";
+      break;
+    case "poloblackmale":
+      cardContainer.innerHTML = "";
+      createCard(blackPolomale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "pologreymale":
+      cardContainer.innerHTML = "";
+      createCard(greyPolomale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "polobluemale":
+      cardContainer.innerHTML = "";
+      createCard(bluePolomale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "pologreenmale":
+      cardContainer.innerHTML = "";
+      createCard(greenPolomale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "roundblackmale":
+      cardContainer.innerHTML = "";
+      createCard(blackRoundmale);
+      putInCart();
+      removeCartDups();
+      break;
+    case "roundgreymale":
+      cardContainer.innerHTML = "";
+      createCard(greyRoundmale);
+      putInCart();
+      removeCartDups();
+      break;
+    default:
+      cardContainer.innerHTML = "<h1>Sorry, Item Not Availiable</h1>";
+      break;
+  }
+});
