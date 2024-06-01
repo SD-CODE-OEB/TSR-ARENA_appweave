@@ -743,6 +743,9 @@ const logo = header.querySelector("p");
 logo.onclick = function () {
   cardContainer.innerHTML = "";
   cardContainer.append(createCard(getFewCards(collection)));
+  putInCart();
+  removeDups(collection);
+  removeCartDups();
   cardContainer.lastChild.remove();
 };
 filterBtn.onclick = function () {
