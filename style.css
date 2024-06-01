@@ -184,7 +184,7 @@ footer p a:hover {
 }
 .main {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 100%;
   height: calc(100% - 80px);
@@ -206,7 +206,6 @@ footer p a:hover {
   margin: 10px;
   color: white;
   position: relative;
-  left: 300px;
   transition: width 1s ease;
 }
 .container h2 {
@@ -581,37 +580,20 @@ footer p a:hover {
   }
 }
 
-@media only screen and (max-width: 1200px) {
-  .main .container {
-    left: 100px;
-  }
-}
-
 @media only screen and (max-width: 900px) {
   .main .container {
-    left: 80px;
     gap: 10px;
     justify-content: center;
-  }
-  .main .filters {
-    width: 200px;
   }
 }
 
 @media only screen and (max-width: 600px) {
-  .main .filters {
-    width: 50px;
+  .select-gender .btns button {
+    padding: 5px;
   }
-  .filters h4 {
-    width: auto;
-    font-size: 0.9rem;
-  }
-  .filters .fil-box .filter {
-    width: 120px;
-    height: 120px;
-  }
-  .main .container {
-    left: 50px;
+  .select-gender .card {
+    width: 150px;
+    height: 200px;
   }
   .card {
     width: 180px;
@@ -637,8 +619,8 @@ footer p a:hover {
     top: 4px;
     right: 3px;
   }
-  .main .container {
-    left: 0px;
+  .main .container .select-gender .btns {
+    flex-direction: column;
   }
   .card {
     width: 150px;
@@ -649,6 +631,10 @@ footer p a:hover {
   }
   .card .info .c-name {
     font-size: 12px;
+  }
+  .search-box {
+    padding-right: 10px;
+    justify-content: center;
   }
   footer {
     height: 100px;
