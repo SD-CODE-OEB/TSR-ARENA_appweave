@@ -439,11 +439,12 @@ const whiteRoundfemale = collection.filter(
     item.name.includes("(F)") &&
     item.name.includes("Round")
 );
-const whiteHoodiefemale = collection.filter((item) => {
-  item.name.includes("white") &&
-    item.name.includes("(F)") &&
-    item.name.includes("Hoodie");
-});
+const whiteHoodiefemale = collection.filter(
+  (item) =>
+    item.name.includes("Hoodie") &&
+    item.name.includes("white") &&
+    item.name.includes("(F)")
+);
 // -----------------------------------------------------------------------
 // Male & Type & Color Filter
 const whiteRoundmale = collection.filter(
@@ -599,6 +600,7 @@ function putInCart() {
           getAddBtn.innerText = "added";
           addToCart();
           updateCart();
+          // removeCartDups();
         } else {
           return;
         }
@@ -688,6 +690,7 @@ function removeFromCart() {
 }
 
 function totalCost() {
+  removeCartDups();
   const cartItems = checkOutItems.children;
   let totalPrice = 0;
   for (const cItem of cartItems) {
@@ -728,14 +731,17 @@ function removeDups(c) {
 }
 
 function removeCartDups() {
+  newArr.length = 0;
   const cartItems = checkOutItems.children;
   for (let i = 0; i < cartItems.length; i++) {
     const cartItemName =
       cartItems[i].querySelector(".item-nm-cnt .name").innerText;
+
     if (!newArr.includes(cartItemName)) {
       newArr.push(cartItemName);
     } else {
       cartItems[i].remove();
+      count.innerHTML = checkOutItems.children.length;
     }
   }
 }
@@ -1267,85 +1273,71 @@ searchBtn.addEventListener("click", () => {
       cardContainer.innerHTML = "";
       createCard(red);
       putInCart();
-      removeCartDups();
       break;
     case "yellow":
       cardContainer.innerHTML = "";
       createCard(yellow);
       putInCart();
-      removeCartDups();
       break;
     case "blue":
       cardContainer.innerHTML = "";
       createCard(blue);
       putInCart();
-      removeCartDups();
       break;
     case "green":
       cardContainer.innerHTML = "";
       createCard(green);
       putInCart();
-      removeCartDups();
       break;
     case "white":
       cardContainer.innerHTML = "";
       createCard(white);
       putInCart();
-      removeCartDups();
       break;
     case "black":
       cardContainer.innerHTML = "";
       createCard(black);
       putInCart();
-      removeCartDups();
       break;
     case "grey":
       cardContainer.innerHTML = "";
       createCard(grey);
       putInCart();
-      removeCartDups();
       break;
     case "cream":
       cardContainer.innerHTML = "";
       createCard(cream);
       putInCart();
-      removeCartDups();
       break;
     case "male":
       cardContainer.innerHTML = "";
       createCard(male);
       putInCart();
-      removeCartDups();
       break;
     case "female":
       cardContainer.innerHTML = "";
       createCard(female);
       putInCart();
-      removeCartDups();
       break;
     case "femaleblue":
       cardContainer.innerHTML = "";
       createCard(blueFemale);
       putInCart();
-      removeCartDups();
       break;
     case "femalered":
       cardContainer.innerHTML = "";
       createCard(redFemale);
       putInCart();
-      removeCartDups();
       break;
     case "femaleyellow":
       cardContainer.innerHTML = "";
       createCard(yellowFemale);
       putInCart();
-      removeCartDups();
       break;
     case "femalewhite":
       cardContainer.innerHTML = "";
       createCard(whiteFemale);
       putInCart();
-      removeCartDups();
       break;
     case "femalegreen":
       cardContainer.innerHTML = "<h1>Sorry, No Items Available</h1>";
@@ -1357,7 +1349,7 @@ searchBtn.addEventListener("click", () => {
       cardContainer.innerHTML = "";
       createCard(bluemale);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "malered":
       cardContainer.innerHTML = "<h1>Sorry, No Items Available</h1>";
@@ -1366,31 +1358,26 @@ searchBtn.addEventListener("click", () => {
       cardContainer.innerHTML = "";
       createCard(yellowmale);
       putInCart();
-      removeCartDups();
       break;
     case "malewhite":
       cardContainer.innerHTML = "";
       createCard(whitemale);
       putInCart();
-      removeCartDups();
       break;
     case "malegreen":
       cardContainer.innerHTML = "";
       createCard(greenmale);
       putInCart();
-      removeCartDups();
       break;
     case "maleblack":
       cardContainer.innerHTML = "";
       createCard(blackmale);
       putInCart();
-      removeCartDups();
       break;
     case "malegrey":
       cardContainer.innerHTML = "";
       createCard(greymale);
       putInCart();
-      removeCartDups();
       break;
     case "femalegrey":
       cardContainer.innerHTML = "<h1>Sorry, No Items Available</h1>";
@@ -1399,7 +1386,6 @@ searchBtn.addEventListener("click", () => {
       cardContainer.innerHTML = "";
       createCard(creammale);
       putInCart();
-      removeCartDups();
       break;
     case "femalecream":
       cardContainer.innerHTML = "<h1>Sorry, No Items Available</h1>";
@@ -1408,37 +1394,34 @@ searchBtn.addEventListener("click", () => {
       cardContainer.innerHTML = "";
       createCard(round);
       putInCart();
-      removeCartDups();
       break;
     case "polo":
       cardContainer.innerHTML = "";
       createCard(polo);
       putInCart();
-      removeCartDups();
       break;
     case "hoodie":
       cardContainer.innerHTML = "";
       createCard(hood);
       putInCart();
-      removeCartDups();
       break;
     case "roundmale":
       cardContainer.innerHTML = "";
       createCard(roundMale);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "roundfemale":
       cardContainer.innerHTML = "";
       createCard(roundFemale);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "polomale":
       cardContainer.innerHTML = "";
       createCard(poloMale);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "polofemale":
       cardContainer.innerHTML = "";
@@ -1448,145 +1431,145 @@ searchBtn.addEventListener("click", () => {
       cardContainer.innerHTML = "";
       createCard(hoodiesMale);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "hoodiefemale":
       cardContainer.innerHTML = "";
       createCard(hoodiesFemale);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "roundred":
       cardContainer.innerHTML = "";
       createCard(roundred);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "roundyellow":
       cardContainer.innerHTML = "";
       createCard(roundyellow);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "roundwhite":
       cardContainer.innerHTML = "";
       createCard(roundwhite);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "hoodiered":
       cardContainer.innerHTML = "";
       createCard(hoodiered);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "hoodieyellow":
       cardContainer.innerHTML = "";
       createCard(hoodieyellow);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "hoodiewhite":
       cardContainer.innerHTML = "";
       createCard(hoodiewhite);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "poloblack":
       cardContainer.innerHTML = "";
       createCard(poloblack);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "pologrey":
       cardContainer.innerHTML = "";
       createCard(pologrey);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "poloblue":
       cardContainer.innerHTML = "";
       createCard(poloblue);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "pologreen":
       cardContainer.innerHTML = "";
       createCard(pologreen);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "roundblack":
       cardContainer.innerHTML = "";
       createCard(roundblack);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "roundgrey":
       cardContainer.innerHTML = "";
       createCard(roundred);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "roundblue":
       cardContainer.innerHTML = "";
       createCard(roundblue);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "roundgreen":
       cardContainer.innerHTML = "";
       createCard(roundred);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "hoodieblue":
       cardContainer.innerHTML = "";
       createCard(hoodieblue);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "hoodiegreen":
       cardContainer.innerHTML = "";
       createCard(hoodiegreen);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "hoodiecream":
       cardContainer.innerHTML = "";
       createCard(hoodiecream);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "hoodiewhite":
       cardContainer.innerHTML = "";
       createCard(hoodiewhite);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "roundredfemale":
       cardContainer.innerHTML = "";
       createCard(redRoundfemale);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "roundyellowfemale":
       cardContainer.innerHTML = "";
       createCard(yellowRoundfemale);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "roundwhitefemale":
       cardContainer.innerHTML = "";
       createCard(whiteRoundfemale);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "hoodieredfemale":
       cardContainer.innerHTML = "";
       createCard(redHoodiefemale);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "hoodieyellowfemale":
       cardContainer.innerHTML = "<h1>Sorry, No Items Available</h1>";
@@ -1595,25 +1578,25 @@ searchBtn.addEventListener("click", () => {
       cardContainer.innerHTML = "";
       createCard(whiteHoodiefemale);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "roundwhitemale":
       cardContainer.innerHTML = "";
       createCard(whiteRoundmale);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "roundyellowmale":
       cardContainer.innerHTML = "";
       createCard(yellowRoundfemale);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "roundbluemale":
       cardContainer.innerHTML = "";
       createCard(blueRoundmale);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "roundgreenmale":
       cardContainer.innerHTML = "<h1>Sorry, No Items Available</h1>";
@@ -1625,25 +1608,25 @@ searchBtn.addEventListener("click", () => {
       cardContainer.innerHTML = "";
       createCard(yellowHoodiemale);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "hoodiebluemale":
       cardContainer.innerHTML = "";
       createCard(blueHoodiemale);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "hoodiegreenmale":
       cardContainer.innerHTML = "";
       createCard(greenHoodiemale);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "hoodiecreammale":
       cardContainer.innerHTML = "";
       createCard(creamHoodiemale);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "hoodiewhitemale":
       cardContainer.innerHTML = "<h1>Sorry, No Items Available</h1>";
@@ -1652,37 +1635,37 @@ searchBtn.addEventListener("click", () => {
       cardContainer.innerHTML = "";
       createCard(blackPolomale);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "pologreymale":
       cardContainer.innerHTML = "";
       createCard(greyPolomale);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "polobluemale":
       cardContainer.innerHTML = "";
       createCard(bluePolomale);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "pologreenmale":
       cardContainer.innerHTML = "";
       createCard(greenPolomale);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "roundblackmale":
       cardContainer.innerHTML = "";
       createCard(blackRoundmale);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     case "roundgreymale":
       cardContainer.innerHTML = "";
       createCard(greyRoundmale);
       putInCart();
-      removeCartDups();
+      // removeCartDups();
       break;
     default:
       cardContainer.innerHTML = "<h1>Sorry, Item Not Availiable</h1>";
