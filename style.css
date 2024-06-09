@@ -384,17 +384,30 @@ footer p a:hover {
   border: 1px solid black;
   padding: 1px;
   width: 75px;
-  transition: all 0.4s ease;
+  transition: all 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
   background-color: white;
   color: black;
   cursor: pointer;
 }
+.card .info .cost button.added {
+  opacity: 0;
+  cursor: default;
+}
 .card .info .cost button:hover {
-  background-color: white;
+  background-color: #f2ff3e;
   border-color: transparent;
   padding: 3px;
-  color: magenta;
   transform: scale(0.9);
+}
+.card .info .cost button:active {
+  transform: scale(0.7);
+  padding: 0 5px;
+  border-radius: none;
+}
+.card .info .cost button:disabled {
+  background-color: grey;
+  color: white;
+  cursor: not-allowed;
 }
 
 .c-menu {
@@ -472,7 +485,12 @@ footer p a:hover {
   background-color: gainsboro;
   animation: slide 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
   box-shadow: 0 0px 0 2px black;
+  transition: transform 0.5s ease, opacity 0.5s ease;
   overflow: hidden;
+}
+.cart-create.remove {
+  transform: translateX(-100%);
+  opacity: 0;
 }
 
 .cart-create img {

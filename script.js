@@ -310,6 +310,12 @@ removeDups();
 
 cart.onclick = function checkOut() {
   checkOutMenu.classList.toggle("active");
+  setTimeout(() => {
+    cardContainer.innerHTML = "";
+    searchBar.value = "";
+    cardContainer.append(createCard(collection));
+    putInCart();
+  }, 1000);
 };
 
 cancelBtn.onclick = function () {
@@ -344,7 +350,6 @@ function putInCart() {
          </div>`;
           checkOutItems.append(cartItem);
           getAddBtn.classList.add("added");
-          getAddBtn.style.display = "none";
           addToCart();
           updateCart();
         } else {
@@ -360,7 +365,10 @@ function updateCart() {
   const cartItems = checkOutMenu.querySelectorAll(".cart-create");
   for (const item of cartItems) {
     if (parseInt(item.querySelector(".no_of_added")) < 1) {
-      item.remove();
+      item.classList.add("remove");
+      setTimeout(() => {
+        item.remove();
+      }, 500);
     }
     const rBtn = item.querySelector(".remove");
     const aBtn = item.querySelector(".add");
@@ -404,8 +412,11 @@ function updateCart() {
             }
           }
           removeFromCart();
-          item.remove();
-          totalCost();
+          item.classList.add("remove");
+          setTimeout(() => {
+            item.remove();
+            totalCost();
+          }, 500);
         }
       };
     }
@@ -564,14 +575,22 @@ searchBtn.addEventListener("click", () => {
         const filterItem = collection.filter((item) =>
           item.name.includes(color)
         );
-        cardContainer.innerHTML = "";
-        createCard(filterItem);
-        putInCart();
+        if (filterItem.length === 0) {
+          cardContainer.innerHTML = `<h1>Sorry, No Items Available</h1>`;
+        } else {
+          cardContainer.innerHTML = "";
+          createCard(filterItem);
+          putInCart();
+        }
       } else if (val === type) {
         const filterItem = collection.filter((item) => item.type === type);
-        cardContainer.innerHTML = "";
-        createCard(filterItem);
-        putInCart();
+        if (filterItem.length === 0) {
+          cardContainer.innerHTML = `<h1>Sorry, No Items Available</h1>`;
+        } else {
+          cardContainer.innerHTML = "";
+          createCard(filterItem);
+          putInCart();
+        }
       } else if (
         val === color + type ||
         val === type + color ||
@@ -581,11 +600,13 @@ searchBtn.addEventListener("click", () => {
         const filterItem = collection.filter(
           (item) => item.name.includes(color) && item.type === type
         );
-        cardContainer.innerHTML = "";
-        createCard(filterItem);
-        putInCart();
-      } else {
-        cardContainer.innerHTML = `<h1>Sorry, No Items Available</h1>`;
+        if (filterItem.length === 0) {
+          cardContainer.innerHTML = `<h1>Sorry, No Items Available</h1>`;
+        } else {
+          cardContainer.innerHTML = "";
+          createCard(filterItem);
+          putInCart();
+        }
       }
     });
   });
