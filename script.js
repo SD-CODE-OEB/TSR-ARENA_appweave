@@ -4,11 +4,15 @@ const header = document.querySelector(".head");
 
 const filterBtn = document.getElementById("filter");
 
+const closeFilterBtn = document.querySelector(".filter-container .close");
+
 const searchBtn = document.getElementById("search-btn");
 
 const searchBar = document.getElementById("search");
 
 const cardContainer = document.querySelector(".container");
+
+const filterContainer = document.querySelector(".filter-container");
 
 const genderContainer = document.createElement("div");
 genderContainer.className = "select-gender";
@@ -16,7 +20,6 @@ genderContainer.innerHTML = `<h2>Choose A Category</h2>
 <div class="btns">
   <button type="button">
     <div class="get-female card">
-      <img src="./Images/female/ac8a89150dffe6a8feee64224a949090.jpg" alt="select">
       <div class="info">
         Female Attire
       </div>
@@ -24,37 +27,32 @@ genderContainer.innerHTML = `<h2>Choose A Category</h2>
   </button>
   <button type="button">
     <div class="get-male card">
-      <img src="./Images/male/alireza-zare-WjoQCjdPMIc-unsplash.jpg" alt="select">
       <div class="info">
         Male Attire
       </div>
     </div>
   </button>
 </div>`;
-
-const femaleCard = genderContainer.querySelector(".get-female");
-
-const maleCard = genderContainer.querySelector(".get-male");
-
 const colorFContainer = document.createElement("div");
 colorFContainer.className = "select-colors-female";
 colorFContainer.classList.add("select-colors");
 colorFContainer.innerHTML = `<h2>Choose A Color</h2>
 <div class="btns">
 </div>`;
-
 const colorMContainer = document.createElement("div");
 colorMContainer.className = "select-colors-male";
 colorMContainer.classList.add("select-colors");
 colorMContainer.innerHTML = `<h2>Choose a Color</h2>
 <div class="btns">
 </div>`;
-
 const typeContainer = document.createElement("div");
 typeContainer.className = "select-type";
 typeContainer.innerHTML = `<h2>Choose a Type</h2>
 <div class = "btns">
 </div>`;
+const femaleCard = genderContainer.querySelector(".get-female");
+
+const maleCard = genderContainer.querySelector(".get-male");
 
 const cart = document.querySelector(".cart");
 
@@ -214,24 +212,14 @@ const collection = [
     img: "/female/premium_photo-1689575249631-ae82a19adaf9.avif",
   },
 ];
-
 const colorsPresent = [
   ...new Set(collection.map((item) => item.name.split(" ")[1])),
 ];
 const typesPresent = [...new Set(collection.map((item) => item.type))];
 const male = collection.filter((item) => item.gender === "male");
 const female = collection.filter((item) => item.gender === "female");
-// Type Filter & Gender Filter
-// const hoodiesMale = male.filter((item) => item.type === "hoodie");
-// const hoodiesFemale = female.filter((item) => item.type === "hoodie");
-// const roundMale = male.filter((item) => item.type === "round");
-// const roundFemale = female.filter((item) => item.type === "round");
-// const poloMale = male.filter((item) => item.type === "polo");
-// Price Filter
-const low = collection.filter((item) => item.price < 300);
-const mid = collection.filter((item) => item.price >= 300 && item.price < 500);
-const high = collection.filter((item) => item.price >= 500);
-// -----------------------------------------------------------------------
+const pricesPresent = [...new Set(collection.map((item) => item.price))].sort();
+// ----------------------------------------------
 function createTypeContainer(types) {
   types.forEach((type) => {
     const btn = document.createElement("button");
@@ -275,7 +263,6 @@ function createMColorBtn(colors) {
 }
 createMColorBtn(colorsPresent);
 
-let newArr = [];
 function createCard(cards) {
   cards.forEach((card) => {
     let getCardImg = card.img;
@@ -308,7 +295,7 @@ function createCard(cards) {
 createCard(collection);
 removeDups();
 
-cart.onclick = function checkOut() {
+cart.onclick = function () {
   checkOutMenu.classList.toggle("active");
   setTimeout(() => {
     cardContainer.innerHTML = "";
@@ -332,7 +319,6 @@ function putInCart() {
           const itemName = item.querySelector(".info h4").innerText;
           const itemPrice = item.querySelector(".cost h4 span").innerText;
           const itemImg = item.querySelector("img").src;
-
           const cartItemCount = 1;
           const cartItem = document.createElement("div");
           cartItem.classList.add("cart-create");
@@ -381,7 +367,6 @@ function updateCart() {
         const count = parseInt(item.querySelector(".no_of_added").innerText);
         item.querySelector(".no_of_added").innerText = count + 1;
         item.querySelector(".price span").innerText = price * (count + 1);
-        // console.log("count", count);
         if (count >= itemQuantity - 1) {
           aBtn.style.display = "none";
           aBtn.previousElementSibling.style.paddingRight = "20px";
@@ -422,6 +407,7 @@ function updateCart() {
     }
   }
 }
+
 const count = document.createElement("span");
 count.innerHTML = 0;
 function addToCart() {
@@ -462,6 +448,7 @@ closeBtn.onclick = function () {
   document.location.reload();
   searchBar.value = "";
 };
+let newArr = [];
 
 function removeDups() {
   newArr.length = 0;
@@ -500,35 +487,75 @@ logo.onclick = function () {
   removeDups();
   cardContainer.lastChild.remove();
 };
-filterBtn.onclick = function () {
-  cardContainer.innerHTML = "";
+filterBtn.addEventListener("click", () => {
   filterBtn.style.animation = "none";
   filterBtn.id = "";
-  cardContainer.appendChild(genderContainer);
-};
+  filterContainer.style.left = "0";
+  cardContainer.classList.add("move");
+  filterContainer.innerHTML = "";
+  filterContainer.append(closeFilterBtn);
+  filterContainer.appendChild(genderContainer);
+});
 
 femaleCard.onclick = function () {
-  cardContainer.style.flexDirection = "row";
-  cardContainer.children[0].remove();
-  cardContainer.appendChild(typeContainer);
-  const types = typeContainer.children[1].children;
-  const colors = colorFContainer.children[1].children;
-  for (const type of types) {
-    type.addEventListener("click", () => {
+  cardContainer.classList.add("hidden");
+  cardContainer.innerHTML = "";
+  setTimeout(() => {
+    cardContainer.classList.remove("hidden");
+    createCard(female);
+    putInCart();
+  }, 600);
+  filterContainer.innerHTML = "";
+  filterContainer.appendChild(genderContainer);
+  filterContainer.appendChild(closeFilterBtn);
+  filterContainer.appendChild(colorFContainer);
+  const types = typeContainer.querySelectorAll(".btns button");
+  const colors = colorFContainer.querySelectorAll(".btns button");
+  for (const color of colors) {
+    color.addEventListener("click", () => {
+      cardContainer.classList.add("hidden");
       cardContainer.innerHTML = "";
-      cardContainer.appendChild(colorFContainer);
-      for (const color of colors) {
-        color.addEventListener("click", () => {
-          const filterItem = female.filter(
-            (item) => item.name.includes(color.id) && item.type === type.id
-          );
-          if (filterItem.length === 0) {
-            cardContainer.innerHTML = `<h1>Sorry, No Items Available</h1>`;
-          } else {
-            cardContainer.innerHTML = "";
-            createCard(filterItem);
-            putInCart();
+      setTimeout(() => {
+        cardContainer.classList.remove("hidden");
+        // Apply display none to colors which are not clicked
+        for (const colorBtn of colors) {
+          if (colorBtn !== color) {
+            colorBtn.classList.add("hidden");
+            setTimeout(() => {
+              colorBtn.classList.remove("hidden");
+            }, 10000);
           }
+        }
+        const filterColorItem = female.filter((item) =>
+          item.name.includes(color.id)
+        );
+        createCard(filterColorItem);
+        removeDups();
+        putInCart();
+      }, 600);
+      filterContainer.appendChild(typeContainer);
+      for (const type of types) {
+        type.addEventListener("click", () => {
+          cardContainer.classList.add("hidden");
+          cardContainer.innerHTML = "";
+          setTimeout(() => {
+            cardContainer.classList.remove("hidden");
+            const filterItem = female.filter(
+              (item) => item.name.includes(color.id) && item.type === type.id
+            );
+            if (filterItem.length === 0) {
+              cardContainer.innerHTML = `<h1>Sorry, No Items Available</h1>`;
+              return;
+            } else {
+              cardContainer.innerHTML = "";
+              createCard(filterItem);
+              filterContainer.innerHTML = "";
+              filterContainer.style.left = "-50%";
+              cardContainer.classList.remove("move");
+              maleCard.classList.remove("hidden");
+              putInCart();
+            }
+          }, 600);
         });
       }
     });
@@ -536,31 +563,70 @@ femaleCard.onclick = function () {
 };
 
 maleCard.onclick = function () {
-  cardContainer.style.flexDirection = "row";
-  cardContainer.children[0].remove();
-  cardContainer.appendChild(typeContainer);
-  const types = typeContainer.children[1].children;
-  const colors = colorMContainer.children[1].children;
-  for (const type of types) {
-    type.addEventListener("click", () => {
+  cardContainer.classList.add("hidden");
+  cardContainer.innerHTML = "";
+  setTimeout(() => {
+    cardContainer.classList.remove("hidden");
+    createCard(male);
+    putInCart();
+  }, 600);
+  filterContainer.innerHTML = "";
+  filterContainer.appendChild(genderContainer);
+  filterContainer.appendChild(closeFilterBtn);
+  filterContainer.appendChild(colorMContainer);
+  const types = typeContainer.querySelectorAll(".btns button");
+  const colors = colorMContainer.querySelectorAll(".btns button");
+  for (const color of colors) {
+    color.addEventListener("click", () => {
+      cardContainer.classList.add("hidden");
       cardContainer.innerHTML = "";
-      cardContainer.appendChild(colorMContainer);
-      for (const color of colors) {
-        color.addEventListener("click", () => {
-          const filterItem = male.filter(
-            (item) => item.name.includes(color.id) && item.type === type.id
-          );
-          if (filterItem.length === 0) {
-            cardContainer.innerHTML = `<h1>Sorry, No Items Available</h1>`;
-          } else {
-            cardContainer.innerHTML = "";
-            createCard(filterItem);
-            putInCart();
+      setTimeout(() => {
+        cardContainer.classList.remove("hidden");
+        for (const colorBtn of colors) {
+          if (colorBtn !== color) {
+            colorBtn.classList.add("hidden");
+            setTimeout(() => {
+              colorBtn.classList.remove("hidden");
+            }, 10000);
           }
+        }
+        const filterColorItem = male.filter((item) =>
+          item.name.includes(color.id)
+        );
+        createCard(filterColorItem);
+        removeDups();
+        putInCart();
+      }, 600);
+      filterContainer.appendChild(typeContainer);
+      for (const type of types) {
+        type.addEventListener("click", () => {
+          cardContainer.classList.add("hidden");
+          cardContainer.innerHTML = "";
+          setTimeout(() => {
+            cardContainer.classList.remove("hidden");
+            const filterItem = male.filter(
+              (item) => item.name.includes(color.id) && item.type === type.id
+            );
+            if (filterItem.length === 0) {
+              cardContainer.innerHTML = `<h1>Sorry, No Items Available</h1>`;
+            } else {
+              cardContainer.innerHTML = "";
+              createCard(filterItem);
+              filterContainer.innerHTML = "";
+              filterContainer.style.left = "-50%";
+              cardContainer.classList.remove("move");
+              femaleCard.classList.remove("hidden");
+              putInCart();
+            }
+          }, 600);
         });
       }
     });
   }
+};
+closeFilterBtn.onclick = function () {
+  cardContainer.classList.remove("move");
+  filterContainer.style.left = "-110%";
 };
 
 searchBar.focus();
