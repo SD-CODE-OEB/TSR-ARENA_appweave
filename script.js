@@ -65,7 +65,6 @@ const orderBtn = document.getElementById("order");
 const cancelBtn = document.getElementById("cancel");
 
 const closeBtn = document.getElementById("close");
-
 const collection = [
   {
     name: "Polo black T-shirt",
@@ -262,7 +261,7 @@ function createMColorBtn(colors) {
   });
 }
 createMColorBtn(colorsPresent);
-
+let newArr = [];
 function createCard(cards) {
   cards.forEach((card) => {
     let getCardImg = card.img;
@@ -448,7 +447,6 @@ closeBtn.onclick = function () {
   document.location.reload();
   searchBar.value = "";
 };
-let newArr = [];
 
 function removeDups() {
   newArr.length = 0;

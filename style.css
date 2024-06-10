@@ -708,7 +708,7 @@ button#filter-again {
   .main .filter-container {
     width: 100vw;
     z-index: 1000;
-    left: -10%;
+    left: -110%;
     top: 65px;
     position: fixed;
   }
