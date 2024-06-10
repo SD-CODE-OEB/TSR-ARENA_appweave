@@ -188,12 +188,41 @@ footer p a:hover {
   align-items: center;
   width: 100%;
   height: calc(100% - 80px);
-  min-height: 475px;
+  min-height: 500px;
   padding: 10px;
   position: relative;
   /* overflow: hidden; */
 }
-
+.main .filter-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+  width: 200px;
+  height: 100%;
+  background-color: #f6fff6;
+  border-radius: 0px 5px 5px 0px;
+  box-shadow: 1px -3px 5px 1px white;
+  padding: 10px;
+  position: absolute;
+  left: -100%;
+  top: 0;
+  transition: all 0.4s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+  overflow: hidden;
+}
+.filter-container .close {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  border: none;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  padding: 2px;
+  cursor: pointer;
+  transition: 0.4s ease;
+}
 .main .container {
   display: grid;
   gap: 10px 40px;
@@ -206,8 +235,14 @@ footer p a:hover {
   height: 100%;
   margin: 10px;
   color: white;
+  transition: all 0.6s ease;
   position: relative;
-  transition: width 1s ease;
+}
+.main .container.move {
+  transform: translateX(20%);
+}
+.main .container.hidden {
+  opacity: 0;
 }
 .container h2 {
   text-align: center;
@@ -215,32 +250,7 @@ footer p a:hover {
   font-size: 1.9rem;
   margin: 10px 0;
 }
-.container .select-gender {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  gap: 10px;
-}
 
-.container .select-gender .btns {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  gap: 10px;
-}
-
-.container .select-gender button {
-  width: auto;
-  padding: 0px;
-  border: none;
-  border-radius: 15px;
-  background-color: black;
-  color: white;
-  cursor: pointer;
-  transition: 0.4s ease;
-}
 .container button img {
   height: 200px;
   width: 200px;
@@ -258,55 +268,76 @@ footer p a:hover {
   color: magenta;
 }
 .select-colors,
-.select-type {
+.select-type,
+.select-price,
+.select-gender {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  font-size: 10px;
+  width: 100%;
   gap: 10px;
 }
 .select-colors .btns,
-.select-type .btns {
+.select-type .btns,
+.select-price .btns,
+.select-gender .btns {
   display: flex;
   justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
   width: 100%;
   gap: 10px;
 }
 .select-colors button,
-.select-type button {
+.select-type button,
+.select-price button,
+.select-gender button {
   width: auto;
   border: none;
   border-radius: 15px;
-  background-color: black;
+  background-color: transparent;
   color: white;
   cursor: pointer;
   transition: 0.4s ease;
 }
-.select-type button {
-  width: auto;
-  padding: 10px;
-  margin: 5px 10px;
-}
 .select-colors button:hover,
 .select-type button:hover {
-  background-color: black;
   color: magenta;
   transform: scale(1.1);
 }
 .select-colors .card,
-.select-type .card {
-  height: 100px;
-  width: 100px;
+.select-type .card,
+.select-price .card,
+.select-gender .card {
+  height: 50px;
+  width: 50px;
   display: flex;
+  transition: all 0.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.select-type .card {
-  height: 150px;
-  width: 150px;
+.select-price .card:hover,
+.select-colors .card:hover,
+.select-type .card:hover,
+.select-gender .card:hover {
+  background: black;
+  color: magenta;
+  box-shadow: inset 0 0 20px rgb(255, 255, 255);
+  border-radius: 25px;
 }
+.select-colors .card .info {
+  padding: 3px;
+  border-radius: 5px;
+}
+.select-gender .card .info:hover,
 .select-colors .card .info:hover,
-.select-type .card .info:hover {
+.select-type .card .info:hover,
+.select-price .card .info:hover {
   background: transparent;
   color: magenta;
 }
@@ -341,6 +372,32 @@ footer p a:hover {
 .card.get-grey .info {
   background-color: grey;
   color: black;
+}
+.get-male.hidden {
+  display: none;
+}
+.get-female.hidden {
+  display: none;
+}
+.select-colors .btns button.hidden {
+  display: none;
+}
+
+button#filter-again {
+  background-color: black;
+  color: white;
+  border: none;
+  margin: auto;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: 0.4s ease;
+}
+#filter-again:hover {
+  background-color: magenta;
+  color: white;
+  box-shadow: 2px 2px 5px 1px black;
+  transform: scale(1.05);
 }
 .card {
   border: 1px solid gainsboro;
@@ -606,13 +663,9 @@ footer p a:hover {
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
   .select-gender .btns button {
     padding: 5px;
-  }
-  .select-gender .card {
-    width: 150px;
-    height: 200px;
   }
   .card {
     width: 180px;
@@ -621,15 +674,23 @@ footer p a:hover {
   .card img {
     height: 140px;
   }
+  .main .container {
+    left: 20px;
+  }
   .container button img {
     height: 150px;
     width: 150px;
   }
 }
-
+@media only screen and (max-width: 600px) {
+  .main .filter-container {
+    width: 150px;
+  }
+}
 @media only screen and (max-width: 500px) {
   .head {
     padding: 0 0px;
+    /* width: 120%; */
   }
   .head #filter {
     font-size: medium;
@@ -641,6 +702,15 @@ footer p a:hover {
   .main .container {
     width: 100%;
     grid-template-columns: auto;
+    left: 10px;
+    transform: translateX(0);
+  }
+  .main .filter-container {
+    width: 100vw;
+    z-index: 1000;
+    left: -10%;
+    top: 65px;
+    position: fixed;
   }
   .main .container .select-gender .btns {
     flex-direction: column;
